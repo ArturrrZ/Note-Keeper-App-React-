@@ -6,18 +6,24 @@ import CreateArea from "./CreateArea";
 
 function App() {
   function submitted(note){
-    console.log(note.title, note.content);
     setNotes(prevValue=>{return [...prevValue,note]});
-    console.log(notes);
   }
   var [notes,setNotes] = useState([]);
-
+  function deleteNotee(id){
+    setNotes(prevValue=>{
+      return prevValue.filter((item, index) => {
+        return index !== id;
+      })
+    })
+  }
   return (
     <div>
       <Header />
       <CreateArea afterSubmit={submitted}/>
       {notes.map(
-        function (note,index) {return <Note key={index} title={note.title} content={note.content} />}
+        function (note,index) {return <Note key={index} 
+        id={index} title={note.title} content={note.content}
+        deleteNote={deleteNotee}  />}
       )}
       
       <Footer />
