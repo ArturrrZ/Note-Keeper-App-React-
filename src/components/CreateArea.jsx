@@ -1,6 +1,13 @@
 import React, {useState} from "react";
-
+import AddIcon from '@mui/icons-material/Add';
+import Zoom from '@mui/material/Zoom';
 function CreateArea(props) {
+  // styling
+  var [expanded,setExpanded] = useState(false);
+  function isExpanded(){
+    setExpanded(true);
+  }
+
   var [inputText,setInputText] = useState({
     title: "",
     content: ""
@@ -20,10 +27,14 @@ function CreateArea(props) {
   }
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input name="title" placeholder="Title" value={inputText.title} onChange={handleChange}/>
-        <textarea name="content" placeholder="Take a note..." rows="3" value={inputText.content} onChange={handleChange} />
-        <button >Add</button>
+      <form onSubmit={handleSubmit} >
+      {expanded && <input name="title" placeholder="Title" value={inputText.title} onChange={handleChange}/>}
+        
+        <textarea name="content" placeholder="Take a note..." rows={expanded?"3":1} value={inputText.content} 
+        onChange={handleChange} onClick={isExpanded} />
+        {expanded &&
+        <Zoom in={isExpanded}>
+         <button ><AddIcon/></button></Zoom>}
       </form>
     </div>
   );
