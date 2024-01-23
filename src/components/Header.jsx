@@ -1,9 +1,9 @@
 import React from "react";
 import EditNoteIcon from '@mui/icons-material/EditNote';
-function Header() {
+function Header(props) {
   return (
     <header>
-      <h1><EditNoteIcon/>  NoteFlow</h1>
+      <h1><EditNoteIcon/>  {props.title}</h1>
     </header>
   );
 }

@@ -18,7 +18,7 @@ function App() {
   }
   return (
     <div>
-      <Header />
+      <Header title="NoteFlow"/>
       <CreateArea afterSubmit={submitted}/>
       {notes.map(
         function (note,index) {return <Note key={index} 
